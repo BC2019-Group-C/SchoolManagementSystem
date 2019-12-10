@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SMS.DataSource;
+using SMS.DataSource.Interfaces;
+using SMS.DataSource.Repository;
 
 namespace SchoolManagementSystem
 {
@@ -22,6 +25,14 @@ namespace SchoolManagementSystem
         {
 
             services.AddControllersWithViews();
+
+            string SQLConnectionString = Configuration["connectionString:SchoolDbConnectionString"];
+            services.AddDbContext<SchoolDBContext>(c => c.UseSqlServer(SQLConnectionString));
+            services.AddScoped<IAdmin, AdminRepository>();
+            services.AddScoped<ITeacher, TeacherRepository>();
+            
+
+
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
