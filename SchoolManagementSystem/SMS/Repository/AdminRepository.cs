@@ -50,7 +50,6 @@ namespace SMS.DataSource.Repository
             if (admin == null)
             {
                 return 0;
-
             }
             else
             {

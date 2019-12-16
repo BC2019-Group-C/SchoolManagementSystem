@@ -13,18 +13,15 @@ namespace SMS.Entities
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(20)]
         public string Grade { get; set; }
 
         [Required]
-        [MaxLength(20)]
         public string Section { get; set; }
 
         [ForeignKey("ClasssTeacherId")]
-        [Required]
-        [MaxLength(20)]
-        public Teacher ParentTeacher { get; set; }
+        public Teacher ClassTeacher { get; set; }
 
+        [Required]
         public int ClasssTeacherId { get; set; }
     }
 }

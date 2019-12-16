@@ -29,7 +29,11 @@ namespace SchoolManagementSystem
             string SQLConnectionString = Configuration["connectionString:SchoolDbConnectionString"];
             services.AddDbContext<SchoolDBContext>(c => c.UseSqlServer(SQLConnectionString));
             services.AddScoped<IAdmin, AdminRepository>();
+            services.AddScoped<IAdminLogin, AdminLoginRepository>();
             services.AddScoped<ITeacher, TeacherRepository>();
+            services.AddScoped<IStudent, StudentRepository>();
+            services.AddScoped<IStudentLogin, StudentLoginRepository>();
+            services.AddScoped<IClassRoom, ClassRoomRepository>();
             
 
 

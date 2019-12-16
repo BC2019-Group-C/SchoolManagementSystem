@@ -1,30 +1,28 @@
-﻿using System;
+﻿using SMS.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace SMS.Entities
+namespace SMS.DataSource.Entities
 {
-    public class Admin
+    public class SclPrincipalLogin
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
-        public string FirstName { get; set; }
+        public string UserName { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        public string Password { get; set; }
+
+        [ForeignKey("PrincipalId")]
+        public SclPrincipal PrincipalUser { get; set; }
 
         [Required]
-        public string Gender { get; set; }
-
-        [Required]
-        public DateTime DateOfBirth { get; set; }
-
-        [Required]
-        public int ContactNumber { get; set; }
+        public int PrincipalId { get; set; }
     }
 }
