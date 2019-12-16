@@ -11,9 +11,9 @@ namespace SMS.DataSource.Interfaces
 
         Teacher GetTeacherById(int Id);
 
-        void CreateTeacher(Teacher teacher);
+        void CreateTeacher(Teacher teacherObj);
 
-        int UpdateTeacher(int Id, Teacher teacherObject);
+        int UpdateTeacher(int Id, Teacher teacherObj);
 
         void DeleteTeacher(int Id);
     }

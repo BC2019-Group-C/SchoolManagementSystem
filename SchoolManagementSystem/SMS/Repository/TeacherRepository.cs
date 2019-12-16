@@ -48,9 +48,7 @@ namespace SMS.DataSource.Repository
 
             if (teacher == null)
             {
-                
                 return 0;
-
             }
             else
             {

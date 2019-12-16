@@ -39,21 +39,21 @@ namespace SchoolManagementSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAdmin([FromBody] Admin NewObj)
+        public IActionResult CreateAdmin([FromBody] Admin adminObj)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            if (NewObj == null)
+            if (adminObj == null)
             {
                 return BadRequest();
             }
 
-            _adminRepo.CreateAdmin(NewObj);
+            _adminRepo.CreateAdmin(adminObj);
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPut("{Id}")]

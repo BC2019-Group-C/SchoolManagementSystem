@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SMS.DataSource.Entities;
 using SMS.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,19 @@ namespace SMS.DataSource
         // add classes in here to include to database
         public DbSet<Admin> Admins { get; set; }
 
+        public DbSet<AdminLogin> AdminLogins { get; set; }
+
         public DbSet<SclPrincipal> Principals { get; set; }
+
+        public DbSet<SclPrincipalLogin> PrincipalLogins { get; set; }
 
         public DbSet<Teacher> Teachers { get; set; }
 
+        public DbSet<TeacherLogin> TeacherLogins { get; set; }
+
         public DbSet<Student> Students { get; set; }
+
+        public DbSet<StudentLogin> StudentLogins { get; set; }
 
         public DbSet<ClassRoom> ClassRooms { get; set; }
 

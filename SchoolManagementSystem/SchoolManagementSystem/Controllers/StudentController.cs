@@ -9,62 +9,62 @@ using SMS.Entities;
 
 namespace SchoolManagementSystem.Controllers
 {
-    [Route("SMS/teacher")]
+    [Route("SMS/student")]
     [ApiController]
-    public class TeacherController : ControllerBase
+    public class StudentController : ControllerBase
     {
-        ITeacher _teacherRepo;
+        IStudent _studentRepo;
 
-        public TeacherController(ITeacher repo)
+        public StudentController(IStudent repo)
         {
-            _teacherRepo = repo;
+            _studentRepo = repo;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var teachers = _teacherRepo.GetAllTeachers();
-            return Ok(teachers);
+            var students = _studentRepo.GetAllStudent();
+            return Ok(students);
         }
 
         [HttpGet("{Id}")]
-        public IActionResult GetTeacherById(int Id)
+        public IActionResult GetStudentById(int Id)
         {
             if (Id < 0)
             {
                 BadRequest();
             }
-            var teacher = _teacherRepo.GetTeacherById(Id);
-            return Ok(teacher);
+            var student = _studentRepo.GetStudentById(Id);
+            return Ok(student);
         }
 
         [HttpPost]
-        public IActionResult CreateTeacher([FromBody] Teacher NewObj)
+        public IActionResult CreateStudent([FromBody] Student studentObj)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            if (NewObj == null)
+            if (studentObj == null)
             {
                 return BadRequest();
             }
 
-            _teacherRepo.CreateTeacher(NewObj);
+            _studentRepo.CreateStudent(studentObj);
 
             return NoContent();
         }
 
         [HttpPut("{Id}")]
-        public IActionResult UpdateTeacher(int Id, [FromBody] Teacher teacherObject)
+        public IActionResult UpdateStudent(int Id, [FromBody] Student studentObject)
         {
             if (Id < 0)
             {
                 BadRequest();
             }
 
-            int result = _teacherRepo.UpdateTeacher(Id, teacherObject);
+            int result = _studentRepo.UpdateStudent(Id, studentObject);
 
             if (result == 0)
                 return BadRequest();
@@ -72,12 +72,12 @@ namespace SchoolManagementSystem.Controllers
         }
 
         [HttpDelete("{Id}")]
-        public IActionResult DeleteTeacher(int Id)
+        public IActionResult DeleteStudent(int Id)
         {
             if (Id < 0)
                 return BadRequest();
 
-            _teacherRepo.DeleteTeacher(Id);
+            _studentRepo.DeleteStudent(Id);
 
             return Ok();
         }
