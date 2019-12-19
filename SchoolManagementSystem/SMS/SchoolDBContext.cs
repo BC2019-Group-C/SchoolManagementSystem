@@ -9,11 +9,11 @@ namespace SMS.DataSource
 {
     public class SchoolDBContext : DbContext
     {
-        //public SchoolDBContext(DbContextOptions<SchoolDBContext> options) : base(options)
-        //{
+        public SchoolDBContext(DbContextOptions<SchoolDBContext> options) : base(options)
+        {
 
-        //    Database.Migrate();
-        //}
+            Database.Migrate();
+        }
 
         // add classes in here to include to database
         public DbSet<Admin> Admins { get; set; }
