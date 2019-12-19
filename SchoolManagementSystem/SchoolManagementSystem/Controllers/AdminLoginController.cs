@@ -20,12 +20,12 @@ namespace SchoolManagementSystem.Controllers
             _adminLoginRepo = repo;
         }
 
-        [HttpGet]
-        public IActionResult GetAllAdminLogins()
-        {
-            var admins = _adminLoginRepo.GetAllAdminLogins();
-            return Ok(admins);
-        }
+        //[HttpGet]
+        //public IActionResult GetAllAdminLogins()
+        //{
+        //    var admins = _adminLoginRepo.GetAllAdminLogins();
+        //    return Ok(admins);
+        //}
 
         
 

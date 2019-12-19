@@ -53,7 +53,7 @@ namespace SchoolManagementSystem.Controllers
 
             _studentRepo.CreateStudent(studentObj);
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPut("{Id}")]

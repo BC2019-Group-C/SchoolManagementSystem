@@ -5,9 +5,12 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Student } from './components/Students';
-import { StudentLoginRegister } from './components/StudentLoginRegister';
+import { StudentLogin } from './components/StudentLogin';
+import Dashboard from './components/StudentDashboard'; 
+import { BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 
 import './custom.css'
+import './App.css';  
 
 export default class App extends Component {
   static displayName = App.name;
@@ -18,8 +21,9 @@ export default class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
-            <Route path='/admin' component={Student} />
-            <Route path='/studentLogin/SignUp' component={StudentLoginRegister} />
+        <Route path='/admin' component={Student} />
+            <Route exact path='/SMS/studentLogin' component={StudentLogin} />
+            <Route exac path='/Dashboard' component={Dashboard} />
       </Layout>
     );
   }

@@ -27,14 +27,16 @@ namespace SchoolManagementSystem.Controllers
             return Ok(students);
         }
 
-        [HttpPost("Login")]
+        [Route("Login")]
+        [HttpPost]
         public IActionResult GetStudentLoginPermission(StudentLogin studentLogin)
         {
             var response = _studentLoginRepo.GetStudentLoginPermission(studentLogin);
             return Ok(response);
         }
 
-        [HttpPost("SignUp")]
+        [Route("SignUp")]
+        [HttpPost]
         public IActionResult CreateStudentLogin([FromBody] StudentLogin studentLoginObj)
         {
             if (!ModelState.IsValid)
@@ -52,7 +54,8 @@ namespace SchoolManagementSystem.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{Id}")]
+        [Route("{Id}")]
+        [HttpPut]
         public IActionResult UpdateStudentLogin(int Id, [FromBody] StudentLogin studentLoginObject)
         {
             if (Id < 0)
@@ -67,7 +70,8 @@ namespace SchoolManagementSystem.Controllers
             return Ok();
         }
 
-        [HttpDelete("{Id}")]
+        [Route("{Id}")]
+        [HttpDelete]
         public IActionResult DeleteStudentLogin(int Id)
         {
             if (Id < 0)

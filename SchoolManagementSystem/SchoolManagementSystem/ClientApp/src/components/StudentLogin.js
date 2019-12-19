@@ -1,49 +1,35 @@
 ﻿import React, { Component } from 'react';
+
 import { Button, Card, CardFooter, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 
-export class StudentLoginRegister extends Component {
+export class StudentLogin extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            Id: '',
             UserName: '',
-            Password: '',
-            StudentUser: '',
-            StudentId: ''
+            Password: ''
         }
 
-        this.Id = this.Id.bind(this);
         this.UserName = this.UserName.bind(this);
         this.Password = this.Password.bind(this);
-        this.StudentUser = this.StudentUser.bind(this);
-        this.StudentId = this.StudentId.bind(this);
-    }
-
-    Id(event) {
-        this.setState({ Id: event.target.value })
+        this.login = this.login.bind(this);
+ 
     }
 
     UserName(event) {
         this.setState({ UserName: event.target.value })
+        console.log(event.target.value)
     }
 
     Password(event) {
         this.setState({ Password: event.target.value })
     }
 
-    StudentUser(event) {
-        this.setState({ StudentUser: event.target.value })
-    }
+    login(event) {
 
-    StudentId(event) {
-        this.setState({ StudentId: event.target.value })
-    }
-
-    register(event) {
-
-        fetch('http://localhost:44307/SMS/StudentLogin/SignUp', {
+        fetch('https://localhost:44307/SMS/studentLogin/Login', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -51,17 +37,21 @@ export class StudentLoginRegister extends Component {
             },
             body: JSON.stringify({
 
-                UserName : this.state.UserName,
-                Password : this.state.Password,
-                StudentUser : null,
-                StudentId : this.state.StudentId
+                userName : this.state.UserName,
+                password : this.state.Password
+                
             })
-        }).then((LoginResponse) => Response.json())
-            .then((Result) => {
-                if (Result.Status == 'Success')
+        }).then((LoginResponse) => LoginResponse.json())
+            .then((result) => {
+                console.log(result);
+                if (result.status === 'Success') {
                     this.props.history.push("/Dashboard");
-                else
-                    alert('Signing Up Failed')
+                }
+                else if (result.status === 'Invalid')
+                {
+                    alert(result.message);
+                }
+                    
             })
     }
 
@@ -75,21 +65,15 @@ export class StudentLoginRegister extends Component {
                             <Card className="mx-4">
                                 <CardBody className="p-4">
                                     <Form>
-                                        <div class="row" className="mb-2 pageheading">
-                                            <div class="col-sm-12 btn btn-primary">
-                                                Sign Up
-                                            </div>
-                                        </div>
+                                        
                                         <InputGroup className="mb-3">
-                                            <Input type="text" onChange={this.UserName} placeholder="Enter User Name" />
+                                            <Input type="text" onChange={(e)=> this.UserName(e)} placeholder="Enter User Name" />
                                         </InputGroup>
                                         <InputGroup className="mb-3">
                                             <Input type="password" onChange={this.Password} placeholder="Enter Password" />
                                         </InputGroup>
-                                        <InputGroup className="mb-4">
-                                            <Input type="text" onChange={this.StudentId} placeholder="Enter Student Id" />
-                                        </InputGroup>
-                                        <Button onClick={this.register} color="success" block>Create Account</Button>
+                                        
+                                        <Button onClick={this.login} color="success" block>Login</Button>
                                     </Form>
                                 </CardBody>
                             </Card>
@@ -99,5 +83,8 @@ export class StudentLoginRegister extends Component {
             </div>
         );
     }
+
+    
 }
+
  

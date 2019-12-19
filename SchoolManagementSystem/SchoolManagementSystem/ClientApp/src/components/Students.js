@@ -12,24 +12,29 @@ export class Student extends Component {
     this.populateWeatherData();
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderStudentTable(studentTable) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Date Of Birth</th>
+                    <th>Conttact Number</th>
+                    <th>Class</th>
           </tr>
         </thead>
         <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
+          {studentTable.map(studentTable =>
+            <tr key={studentTable.className}>
+              <td>{studentTable.id}</td>
+              <td>{studentTable.firstName}</td>
+              <td>{studentTable.lastName}</td>
+                  <td>{studentTable.gender}</td>
+                  <td>{studentTable.dateOfBirth}</td>
+                  <td>{studentTable.contactNumber}</td>
             </tr>
           )}
         </tbody>
@@ -40,7 +45,8 @@ export class Student extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : Student.renderForecastsTable(this.state.forecasts);
+          : Student.renderForecastsTable(this.state.forecasts);
+      
 
     return (
       <div>
