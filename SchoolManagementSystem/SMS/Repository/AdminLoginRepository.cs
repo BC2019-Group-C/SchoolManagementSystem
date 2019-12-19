@@ -11,8 +11,6 @@ namespace SMS.DataSource.Repository
     {
         SchoolDBContext _schoolDBContext;
 
-        
-
         public AdminLoginRepository(SchoolDBContext sclDBContext)
         {
             _schoolDBContext = sclDBContext;

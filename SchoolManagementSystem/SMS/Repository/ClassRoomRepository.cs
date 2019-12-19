@@ -1,4 +1,5 @@
-﻿using SMS.DataSource.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SMS.DataSource.Interfaces;
 using SMS.Entities;
 using System;
 using System.Collections.Generic;
@@ -39,15 +40,17 @@ namespace SMS.DataSource.Repository
 
         public ICollection<Student> GetAllStudentsInClassRoom(string grade, string section)
         {
-            // var students = _schoolDBContext.ClassRooms.Where(c => c.Grade == grade && c.Section == section).ToList();
-            //var tempClass = _schoolDBContext.ClassRooms.Where(c => c.Grade == grade && c.Section == section);
+            
             int tempClassID = (from c in _schoolDBContext.ClassRooms
                              where c.Grade == grade && c.Section == section
                              select c.Id).FirstOrDefault();
 
+            var classss = _schoolDBContext.Students.Include(s => s.ClassRoom).Where(s => s.ClassRoom.Grade == grade &&
+           s.ClassRoom.Section == section).ToList();
+
             var students = _schoolDBContext.Students.Where(s => s.ClassRoomId == tempClassID).ToList();
 
-            return students;
+            return classss;
         }
 
         public ClassRoom GetClassRoomById(string grade, string section)
